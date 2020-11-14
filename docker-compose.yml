@@ -1,0 +1,21 @@
+version: '3'
+networks: 
+    nx-study:
+        driver: bridge
+services: 
+    api:
+        container_name: nx-study-api
+        image: nx-study-api
+        networks: 
+            - nx-study
+        ports:
+            - 3333:3333
+    todos:
+        container_name: nx-study-todos
+        image: nx-study-todos
+        networks: 
+            - nx-study
+        ports:
+            - 80:80
+        links:
+            - nx-study-api

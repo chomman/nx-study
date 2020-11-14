@@ -1,0 +1,61 @@
+{
+  "npmScope": "nx-study",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "accessToken": "M2ZhMjY3MjAtZjZlZS00OWM4LThiZmEtNWM5NTVmODQ2MjU0fHJlYWQtd3JpdGU=",
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "todos": {
+      "tags": []
+    },
+    "todos-e2e": {
+      "tags": [],
+      "implicitDependencies": ["todos"]
+    },
+    "api": {
+      "tags": []
+    },
+    "data": {
+      "tags": []
+    },
+    "ui": {
+      "tags": []
+    },
+    "model-typeorm": {
+      "tags": []
+    },
+    "model-sequelize": {
+      "tags": []
+    },
+    "utils": {
+      "tags": []
+    },
+    "auth": {
+      "tags": []
+    },
+    "config": {
+      "tags": []
+    }
+  }
+}
