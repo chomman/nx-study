@@ -8,7 +8,7 @@ const isProductionEnv = process.env.NODE_ENV === 'production';
 const pathMigrations = join(__dirname, 'migrations', '**{.ts,.js}');
 
 export const databaseConfig = {
-  dialect: 'mysql',
+  //dialect: 'mysql',
   host: process.env.DB_HOST,
   port: +process.env.DB_PORT,
   username: process.env.DB_USERNAME,

@@ -1,21 +1,11 @@
 import { Logger, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-//import { Sequelize } from 'sequelize/types';
 import { databaseConfig } from './db.config';
 import { Post } from './models';
 
 @Module({
   imports: [
-    SequelizeModule.forRoot({
-      dialect: 'mysql',
-      host: process.env.DB_HOST,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      autoLoadModels: true,
-      synchronize: true
-    }),
+    SequelizeModule.forRoot({ ...databaseConfig, dialect: 'mysql' }),
     SequelizeModule.forFeature([Post]),
   ],
   controllers: [],
@@ -29,5 +19,7 @@ import { Post } from './models';
 export class ModelSequelizeModule {
   constructor(
     //private readonly sequelize: Sequelize
-  ) {}
+  ) {
+    Logger.log(`model-sequelize database config : ${JSON.stringify(databaseConfig, null, 2)}`);
+  }
 }

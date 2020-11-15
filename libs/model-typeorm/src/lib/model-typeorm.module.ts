@@ -29,5 +29,7 @@ import { UserSubscriber } from './subscribers/user.subscribers';
 export class ModelTypeOrmModule {
   constructor(
     private readonly connection: Connection
-  ) {}
+  ) {
+    Logger.log(`model-typeorm database config : ${JSON.stringify(databaseConfig, null, 2)}`);
+  }
 }

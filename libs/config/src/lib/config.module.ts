@@ -13,4 +13,8 @@ import database from './database';
   ],
   exports: [ConfigModule]
 })
-export class ConfigurationModule {}
+export class ConfigurationModule {
+  constructor() {
+    console.log('process.env', process.env);
+  }
+}

@@ -1,21 +1,64 @@
-version: '3'
-networks: 
-    nx-study:
-        driver: bridge
-services: 
-    api:
-        container_name: nx-study-api
-        image: nx-study-api
-        networks: 
-            - nx-study
-        ports:
-            - 3333:3333
-    todos:
-        container_name: nx-study-todos
-        image: nx-study-todos
-        networks: 
-            - nx-study
-        ports:
-            - 80:80
-        links:
-            - nx-study-api
+version: '3.4'
+networks:
+  nx-study-net:
+    driver: bridge
+
+services:
+  db:
+    image: mysql/mysql-server:5.7
+    container_name: mysql
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    ports:
+      - 3306:3306
+    networks:
+      nx-study-net:
+    environment:
+      - MYSQL_DATABASE=nx-study
+      - MYSQL_ROOT_PASSWORD=mysql
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_USER=nx-study
+      - MYSQL_PASSWORD=mysql
+      - TZ=Asia/Seoul
+    volumes:
+      - data:/var/lib/mysql
+      - ./db-init-files/:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: "mysqladmin ping -h localhost"
+      interval: 1s
+      timeout: 1s
+      retries: 60
+
+  nx-study-api:
+    container_name: api
+    env_file:
+      - docker.env
+    environment:
+      - DEBUG
+      - NODE_ENV=production
+    build:
+      context: .
+      target: nx-study-api
+    depends_on:
+      - db
+    networks:
+      nx-study-net:
+
+  nx-study-todos:
+    container_name: todos
+    env_file:
+      - .env
+    environment:
+      - DEBUG
+      - NODE_ENV=production
+    build:
+      context: .
+      target: nx-study-todos
+    ports:
+      - 80:80
+      - 3333:3333
+    networks:
+      nx-study-net:
+
+volumes:
+  data:
