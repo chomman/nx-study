@@ -2,15 +2,20 @@ import { Logger, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { databaseConfig } from './db.config';
 import { Post } from './models';
+import { PostService } from './services';
+import { PostController } from './controllers';
 
 @Module({
   imports: [
     SequelizeModule.forRoot({ ...databaseConfig, dialect: 'mysql' }),
     SequelizeModule.forFeature([Post]),
   ],
-  controllers: [],
+  controllers: [
+    PostController
+  ],
   providers: [
-    Logger
+    Logger,
+    PostService
   ],
   exports: [
     SequelizeModule

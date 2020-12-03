@@ -22,7 +22,11 @@
       "@nx-study/model-sequelize": ["libs/model-sequelize/src/index.ts"],
       "@nx-study/utils": ["libs/utils/src/index.ts"],
       "@nx-study/auth": ["libs/auth/src/index.ts"],
-      "@nx-study/config": ["libs/config/src/index.ts"]
+      "@nx-study/config": ["libs/config/src/index.ts"],
+      "@nx-study/model-neo4j": ["libs/model-neo4j/src/index.ts"],
+      "@nx-study/model-neo4j-realworld": [
+        "libs/model-neo4j-realworld/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

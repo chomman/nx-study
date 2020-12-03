@@ -1,6 +1,6 @@
 # 로드맵
 
-- [X] nx 프로젝트 생성
+- [x] nx 프로젝트 생성
 
 - [X] 간단한 todo api 서버
 
@@ -10,7 +10,7 @@
 
 - [X] 인증 모듈 개발
 
-- [] Dockerize
+- [X] Dockerize
 
 - [] neo4j 연동 및 모델 분리
 

@@ -5,15 +5,20 @@ import { AuthModule } from '@nx-study/auth';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
+import { BudgetModule, CategoryModule, ModelNeo4jModule } from '@nx-study/model-neo4j';
+import { TodoController } from '../todo';
 
 @Module({
   imports: [
     ModelTypeOrmModule,
     ModelSequelizeModule,
+    ModelNeo4jModule,
     BootstrapModule.forRoot({ autoLoadEntities: true }),
-    AuthModule
+    AuthModule,
+    BudgetModule,
+    CategoryModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, TodoController],
   providers: [AppService],
 })
 export class AppModule {

@@ -5,14 +5,15 @@ import { Controller, Post, Req, UseGuards, HttpCode, HttpStatus, All } from '@ne
 import TokenResponse from '../interfaces/token-response.interface';
 import { User } from '@nx-study/model-typeorm';
 import { AuthService } from '../services';
-import { ApiBody, ApiQuery } from "@nestjs/swagger";
+import { ApiBody, ApiQuery, ApiTags } from '@nestjs/swagger';
 
-@Controller()
+@Controller('auth')
+@ApiTags('auth')
 export class LoginController {
     constructor(private readonly authService: AuthService) {}
 
     @UseGuards(AuthGuard('local'))
-    @Post('auth/login')
+    @Post('login')
     @ApiQuery({ name: 'email' })
     @ApiQuery({ name: 'password' })
     @HttpCode(HttpStatus.OK)
@@ -22,7 +23,7 @@ export class LoginController {
 
 
     @UseGuards(AuthGuard('bearer-refresh'))
-    @All('auth/token/refresh')
+    @All('token/refresh')
     @HttpCode(HttpStatus.OK)
     async refreshToken(@Req() req: Request): Promise<TokenResponse> {
         return this.authService.login(plainToClass(User, req.user));

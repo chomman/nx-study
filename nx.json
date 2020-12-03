@@ -56,6 +56,12 @@
     },
     "config": {
       "tags": []
+    },
+    "model-neo4j": {
+      "tags": []
+    },
+    "model-neo4j-realworld": {
+      "tags": []
     }
   }
 }

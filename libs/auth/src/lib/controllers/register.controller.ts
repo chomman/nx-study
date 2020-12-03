@@ -1,9 +1,10 @@
 import { plainToClass } from 'class-transformer';
 import { Controller, UseInterceptors, ClassSerializerInterceptor, Post, Body, HttpException, HttpStatus } from '@nestjs/common';
 import { User, UserService, CreateUserDto, UserResponse } from '@nx-study/model-typeorm';
-import { ApiBody } from "@nestjs/swagger";
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('auth')
 export class RegisterController {
     constructor(private readonly userService: UserService) {}
 
